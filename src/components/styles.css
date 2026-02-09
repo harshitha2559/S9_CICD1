@@ -1,45 +1,200 @@
-*{
-    background-color: rgb(235, 235, 229);
+/* =========================
+   GLOBAL STYLES
+========================= */
+* {
+  box-sizing: border-box;
 }
 
-.head{
-    display: flex;
-    gap: 20px;
-    /* padding: 20px; */
-}
-Link{
-    width: 80px;
-    background-color: blue;
+body {
+  margin: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
-p{
-    background-color: blue;
-    color: aliceblue;
-    font-size: 30px;
+/* =========================
+   PAGE BACKGROUNDS
+========================= */
+.page-container {
+  min-height: 100vh;
+  color: white;
 }
 
-.glass-btn {
-  padding: 14px 40px;
-  font-size: 20px;
-  font-weight: bold;
-  color: #ffffff;
-  border-radius: 30px;
-  border: 1px solid rgba(255, 255, 255, 0.4);
+.weather-bg {
+  background: linear-gradient(135deg, #2193b0, #6dd5ed);
+}
+
+.edu-bg {
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+}
+
+.water-bg {
+  background: linear-gradient(135deg, #0f9bcb, #0c4a6e);
+}
+
+.food-bg {
+  background: linear-gradient(135deg, #ff512f, #dd2476);
+}
+
+.home-container {
+  min-height: 100vh;
   background: linear-gradient(135deg, #667eea, #764ba2);
-  box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+  color: white;
+}
+
+/* =========================
+   NAVBAR
+========================= */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 40px;
+  background: rgba(255, 255, 255, 0.15);
   backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+}
+
+.logo {
+  margin: 0;
+  font-size: 22px;
+}
+
+.nav-links a {
+  margin-left: 18px;
+  text-decoration: none;
+  color: white;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+.nav-links a:hover {
+  color: #ffd369;
+}
+
+.active {
+  color: #ffd369 !important;
+}
+
+/* =========================
+   CARDS
+========================= */
+.hero-card,
+.content-card {
+  background: rgba(255, 255, 255, 0.15);
+  padding: 35px;
+  border-radius: 16px;
+  text-align: center;
+  backdrop-filter: blur(12px);
+}
+
+.hero-card {
+  width: 60%;
+  margin: 100px auto;
+}
+
+.content-card {
+  width: 420px;
+  margin: 80px auto;
+}
+
+.wide-card {
+  width: 80%;
+}
+
+/* =========================
+   TEXT
+========================= */
+.hero-card h1,
+.content-card h1 {
+  margin-bottom: 10px;
+}
+
+.hero-card p,
+.content-card p {
+  font-size: 17px;
+  line-height: 1.6;
+}
+
+/* =========================
+   INPUT & BUTTON
+========================= */
+.city-input {
+  width: 100%;
+  padding: 14px;
+  margin-top: 20px;
+  border-radius: 8px;
+  border: none;
+  font-size: 16px;
+  outline: none;
+}
+
+.action-btn,
+.primary-btn {
+  margin-top: 20px;
+  padding: 12px 28px;
+  background: #ffd369;
+  border: none;
+  border-radius: 25px;
+  font-size: 16px;
+  font-weight: bold;
   cursor: pointer;
-  transition: all 0.3s ease;
+  text-decoration: none;
+  color: #333;
+  display: inline-block;
 }
 
-/* Hover effect */
-.glass-btn:hover {
-  /* transform: scale(1.002); */
-  box-shadow: 0 12px 40px rgba(31, 38, 135, 0.6);
+.action-btn:hover,
+.primary-btn:hover {
+  background: white;
 }
 
-/* Active click effect */
-.glass-btn:active {
-  transform: scale(1.05);
+/* =========================
+   RESULT CARD
+========================= */
+.result-card {
+  margin-top: 25px;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 12px;
+}
+
+.result-card span {
+  color: #ffd369;
+}
+
+/* =========================
+   ERROR
+========================= */
+.error-text {
+  margin-top: 15px;
+  color: #ffb3b3;
+  font-weight: bold;
+}
+
+/* =========================
+   TABLE
+========================= */
+.table-wrapper {
+  margin-top: 25px;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.styled-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.styled-table th,
+.styled-table td {
+  padding: 12px;
+  text-align: center;
+}
+
+.styled-table th {
+  background: rgba(0, 0, 0, 0.3);
+  color: #ffd369;
+}
+
+.styled-table tr:nth-child(even) {
+  background: rgba(255, 255, 255, 0.05);
 }

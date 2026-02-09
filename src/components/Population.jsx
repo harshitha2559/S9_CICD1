@@ -3,14 +3,14 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import "./styles.css";
 
-const Temperature = () => {
+const Population = () => {
   const [city, setCity] = useState("");
-  const [temp, setTemp] = useState(null);
+  const [population, setPopulation] = useState(null);
   const [error, setError] = useState("");
 
   const handleBtnclick = () => {
     setError("");
-    setTemp(null);
+    setPopulation(null);
 
     axios
       .get("https://geocoding-api.open-meteo.com/v1/search", {
@@ -19,48 +19,40 @@ const Temperature = () => {
           count: 1,
         },
       })
-      .then((geoRes) => {
-        const { latitude, longitude } = geoRes.data.results[0];
-
-        return axios.get("https://api.open-meteo.com/v1/forecast", {
-          params: {
-            latitude,
-            longitude,
-            current_weather: true,
-          },
-        });
-      })
-      .then((Res) => {
-        if (Res) {
-          setTemp(Res.data.current_weather.temperature);
+      .then((res) => {
+        if (!res.data.results || res.data.results.length === 0) {
+          throw new Error("City not found");
         }
+
+        const { population } = res.data.results[0];
+        setPopulation(population);
       })
       .catch((err) => {
-        setError("Unable to fetch temperature. Try again.");
+        setError("Unable to fetch population. Try again.");
         console.error(err);
       });
   };
 
   return (
-    <div className="page-container weather-bg">
+    <div className="page-container">
 
       {/* Navbar */}
       <nav className="navbar">
-        <h2 className="logo">🌤️ Weather Explorer</h2>
+        <h2 className="logo">🌍 City Info Portal</h2>
         <div className="nav-links">
           <Link to="/">Home</Link>
-          <Link to="/temperature" className="active">Weather</Link>
-          <Link to="/population">Population</Link>
+          <Link to="/temperature">Weather</Link>
+          <Link to="/population" className="active">Population</Link>
           <Link to="/education">Education</Link>
           <Link to="/water">Water</Link>
           <Link to="/food">Food</Link>
         </div>
       </nav>
 
-      {/* Card */}
+      {/* Content Card */}
       <div className="content-card">
-        <h1>🌡️ Temperature Checker</h1>
-        <p>Find current temperature of any city in real-time.</p>
+        <h1>🏙️ Population Checker</h1>
+        <p>Enter a city name to get its population using live API data.</p>
 
         <input
           type="text"
@@ -71,13 +63,15 @@ const Temperature = () => {
         />
 
         <button className="action-btn" onClick={handleBtnclick}>
-          Check Temperature
+          Check Population
         </button>
 
-        {temp !== null && (
+        {population && (
           <div className="result-card">
-            <h2>{city}</h2>
-            <h1>{temp} °C</h1>
+            <h2>
+              Population of <span>{city}</span>
+            </h2>
+            <h1>{population.toLocaleString()}</h1>
           </div>
         )}
 
@@ -88,4 +82,4 @@ const Temperature = () => {
   );
 };
 
-export default Temperature;
+export default Population;
